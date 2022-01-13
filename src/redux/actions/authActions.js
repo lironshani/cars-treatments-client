@@ -1,33 +1,25 @@
-import Axios from "axios";
-import Cookie from "js-cookie";
-import {
-  USER_SIGNIN_ATTEMPT,
-  USER_SIGNIN_SUCCESS,
-  USER_SIGNIN_FAILED,
-  USER_SIGNUP_ATTEMPT,
-  USER_SIGNUP_SUCCESS,
-  USER_SIGNUP_FAILED,
-  USER_SIGNOUT_SUCCESS,
-} from "../Constants/userConst";
-import { Redirect, Route } from "react-router";
-import { history } from "../history";
+import axios from "axios";
+import cookie from "js-cookie";
+import * as types from "../types";
+import { history } from "../../history";
 
 function signin(email, password) {
   return (dispatch) => {
-    dispatch({ type: USER_SIGNIN_ATTEMPT, payload: {} });
-    Axios.post("https://techstar12.herokuapp.com/signin", {
-      email: email,
-      password: password,
-    })
+    dispatch({ type: types.USER_SIGNIN_ATTEMPT, payload: {} });
+    axios
+      .post("https://techstar12.herokuapp.com/signin", {
+        email: email,
+        password: password,
+      })
       .then(function (response) {
         if (response.data.success === true) {
-          dispatch({ type: USER_SIGNIN_SUCCESS, payload: response });
-          Cookie.set("userInstance", JSON.stringify(response));
+          dispatch({ type: types.USER_SIGNIN_SUCCESS, payload: response });
+          cookie.set("userInstance", JSON.stringify(response));
           history.push("/");
         } else {
-          dispatch({ type: USER_SIGNIN_FAILED, payload: 0 });
+          dispatch({ type: types.USER_SIGNIN_FAILED, payload: 0 });
           if (response.data.error === 1) {
-            dispatch({ type: USER_SIGNIN_FAILED, payload: 1 });
+            dispatch({ type: types.USER_SIGNIN_FAILED, payload: 1 });
             alert(
               "Your account is still disabled. You need to activate it using the URL we sent to your Email."
             );
@@ -35,15 +27,15 @@ function signin(email, password) {
         }
       })
       .catch(function (error) {
-        dispatch({ type: USER_SIGNIN_FAILED, payload: error });
+        dispatch({ type: types.USER_SIGNIN_FAILED, payload: error });
       });
   };
 }
 
 const signup = (email, password, firstname, lastname) => async (dispatch) => {
-  dispatch({ type: USER_SIGNUP_ATTEMPT, payload: {} });
+  dispatch({ type: types.USER_SIGNUP_ATTEMPT, payload: {} });
   try {
-    const user = await Axios.post(
+    const user = await axios.post(
       "https://cars-treatments.herokuapp.com/signup",
       {
         email: email,
@@ -53,26 +45,26 @@ const signup = (email, password, firstname, lastname) => async (dispatch) => {
       }
     );
     if (user.data.success) {
-      dispatch({ type: USER_SIGNUP_SUCCESS, payload: user });
+      dispatch({ type: types.USER_SIGNUP_SUCCESS, payload: user });
       history.push("/");
     } else {
       if (user.data.error === 0)
-        dispatch({ type: USER_SIGNUP_FAILED, payload: 0 });
+        dispatch({ type: types.USER_SIGNUP_FAILED, payload: 0 });
       else if (user.data.error === 1)
-        dispatch({ type: USER_SIGNUP_FAILED, payload: 1 });
+        dispatch({ type: types.USER_SIGNUP_FAILED, payload: 1 });
       else if (user.data.error === 3) {
-        dispatch({ type: USER_SIGNUP_FAILED, payload: 3 });
+        dispatch({ type: types.USER_SIGNUP_FAILED, payload: 3 });
         alert("Bad PromoCode!");
       }
     }
   } catch (err) {
-    dispatch({ type: USER_SIGNUP_FAILED, payload: err });
+    dispatch({ type: types.USER_SIGNUP_FAILED, payload: err });
   }
 };
 
 const forgotPass = (email) => async (dispatch) => {
   try {
-    const response = await Axios.post(
+    const response = await axios.post(
       "https://techstar12.herokuapp.com/forgotPass",
       {
         email: email,
@@ -92,7 +84,7 @@ const forgotPass = (email) => async (dispatch) => {
 
 const updatePass = (email, oldpass, newpass) => async (dispatch) => {
   try {
-    const response = await Axios.post(
+    const response = await axios.post(
       "https://techstar12.herokuapp.com/updatePass",
       {
         email: email,
@@ -116,7 +108,7 @@ const updatePass = (email, oldpass, newpass) => async (dispatch) => {
 
 const updateEmail = (oldemail, newemail) => async (dispatch) => {
   try {
-    const response = await Axios.post(
+    const response = await axios.post(
       "https://techstar12.herokuapp.com/updateEmail",
       {
         email: oldemail,
@@ -139,7 +131,7 @@ const updateEmail = (oldemail, newemail) => async (dispatch) => {
 
 const approveUser = (userid, token) => async (dispatch) => {
   try {
-    const response = await Axios.post(
+    const response = await axios.post(
       "https://techstar12.herokuapp.com/approve_user",
       {
         userid: userid,
@@ -157,7 +149,7 @@ const approveUser = (userid, token) => async (dispatch) => {
 
 const updatePassForgot = (userid, token, newpass) => async (dispatch) => {
   try {
-    const response = await Axios.post(
+    const response = await axios.post(
       "https://techstar12.herokuapp.com/storePassword",
       {
         userid: userid,
@@ -178,7 +170,7 @@ const updateDet =
   (email, first_name, last_name, phonenumber, country, city) =>
   async (dispatch) => {
     try {
-      const response = await Axios.post(
+      const response = await axios.post(
         "https://techstar12.herokuapp.com/updateDet",
         {
           email: email,
@@ -202,8 +194,8 @@ const updateDet =
   };
 
 const signout = () => (dispatch) => {
-  Cookie.remove("userInstance");
-  dispatch({ type: USER_SIGNOUT_SUCCESS });
+  cookie.remove("userInstance");
+  dispatch({ type: types.USER_SIGNOUT_SUCCESS });
 };
 
 export {

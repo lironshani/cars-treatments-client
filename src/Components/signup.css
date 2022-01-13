@@ -1,18 +1,21 @@
+/* -----> You shouldn't give style to body from css file that is for the component, 
+It would be hard to locate where this style is coming from, and might override another
 body {
   font-family: Calibri;
-  background: #373b44; /* fallback for old browsers */
+  background: #373b44; 
   background: -webkit-linear-gradient(
     to right,
     #087c8b,
     #b9d9df
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #087c8b,
-    #b9d9df
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  display: block;
-}
+    ); 
+    background: linear-gradient(
+      to right,
+      #087c8b,
+      #b9d9df
+      );
+      display: block;
+    }  
+*/
 
 #SignUpcontainer col-xs-6 col-md-4 {
   display: flex;

@@ -9,7 +9,7 @@ import {
   FormControl,
   Button,
 } from "react-bootstrap";
-import "../Components/navbar.css";
+import "../components/navbar.css";
 // import logo from "../images/logo.png";
 import ProfileNavComp from "./ProfileNavComp";
 

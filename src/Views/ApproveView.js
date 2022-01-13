@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import NavBar from "../Components/NavBar";
-import ApproveMyProfileComponent from "../Components/ApproveMyProfileComponent";
+import NavBar from "../components/NavBar";
+import ApproveMyProfileComponent from "../components/ApproveMyProfileComponent";
 
 class ApproveView extends Component {
   render() {

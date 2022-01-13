@@ -1,6 +1,6 @@
 import { combineReducers, createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
-import { authReducer } from "./Reducers/authReducer";
+import { authReducer } from "./reducers/authReducer";
 import Cookie from "js-cookie";
 const user = Cookie.getJSON("userInstance") || null;
 var initialState = 0;

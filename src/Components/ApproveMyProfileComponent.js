@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import history from "../history";
 import { useDispatch, useSelector } from "react-redux";
-import "../Components/approve.css";
-import { approveUser } from "../Actions/autAction";
+import "./approve.css";
+import { approveUser } from "../redux/actions/authActions";
 
 function ApproveMyProfileComponent(props) {
   const dispatch = useDispatch();

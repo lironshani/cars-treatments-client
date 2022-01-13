@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { history } from "../history";
 import { useDispatch, useSelector } from "react-redux";
-import "../Components/Profile.css";
+import "./Profile.css";
 import avatar from "../images/avatar.png";
 import cookie from "js-cookie";
-// import { signout } from "../Actions/authActions";
 import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/Button";
 function ProfileNavComp(props) {
