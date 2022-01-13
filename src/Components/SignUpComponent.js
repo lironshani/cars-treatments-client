@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "../Components/signup.css";
+import "./signup.css";
 import ReCAPTCHA from "react-google-recaptcha";
-import { signup } from "../Actions/autAction";
+import { signup } from "../redux/actions/authActions";
 import Alert from "react-bootstrap/Alert";
 
 function SignUpComponent(props) {
