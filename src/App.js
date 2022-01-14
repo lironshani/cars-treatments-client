@@ -5,7 +5,10 @@ function App({ children }) {
   return (
     <div className="App">
       <Sidebar></Sidebar>
-      <div className="main-panel">{children}</div>
+      <div className="header-and-main">
+        <div className="app-header"></div>
+        <div className="main-panel">{children}</div>
+      </div>
     </div>
   );
 }
