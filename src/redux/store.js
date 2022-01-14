@@ -1,17 +1,23 @@
 import { combineReducers, createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import { authReducer } from "./reducers/authReducer";
-import Cookie from "js-cookie";
-const user = Cookie.getJSON("userInstance") || null;
-var initialState = 0;
-if (user) {
-  initialState = {
-    loggedin: true,
-    user: user,
-  };
-} else {
-  initialState = {};
-}
+// import Cookie from "js-cookie";
+// const user = Cookie.getJSON("userInstance") || null;
+// var initialState = 0;
+// if (user) {
+//   initialState = {
+//     loggedin: true,
+//     user: user,
+//   };
+// } else {
+//   initialState = {};
+// }
+
+const initialState = {
+  user: { name: "liron" },
+  token: undefined,
+};
+
 const Red = combineReducers({
   user: authReducer,
 });
