@@ -11,7 +11,7 @@ import SignUp from "./Views/SignUpView";
 import SignIn from "./Views/SignInView";
 import ApproveView from "./Views/ApproveView";
 import Welcome from "./components/Welcome/Welcome";
-import SignUp from "./components/SignUp/SignUp";
+// import SignUp from "./components/SignUp/SignUp";
 import AboutUs from "./components/AboutUs/AboutUS";
 
 function PrivateRoute({ children, ...rest }) {
