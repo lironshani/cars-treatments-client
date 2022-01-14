@@ -69,13 +69,10 @@ const signup = (email, password, firstname, lastname) => async (dispatch) => {
 
 const forgotPass = (email) => async (dispatch) => {
   try {
-    const response = await axios.post(
-      "https://techstar12.herokuapp.com/forgotPass",
-      {
-        email: email,
-      }
-    );
-    if (response.data.success === true) {
+    const response = await axios.put("http://localhost:5000/users/forgot", {
+      email: email,
+    });
+    if (response.status === 200) {
       alert(
         "A recovery email has been sent to the email you specified. Please visit your Email box and follow the instructions."
       );
@@ -87,20 +84,22 @@ const forgotPass = (email) => async (dispatch) => {
   }
 };
 
-const updatePassForgot = (userid, token, newpass) => async (dispatch) => {
+const updatePassForgot = (token, newpass) => async (dispatch) => {
   try {
     const response = await axios.post(
-      "https://techstar12.herokuapp.com/storePassword",
+      "http://localhost:5000/users/reset",
       {
-        userid: userid,
-        token: token,
-        newpass: newpass,
-      }
+        new_password: newpass,
+      },
+      { headers: { authorization: "Bearer " + token } }
     );
-    if (response.data.success === true) {
-      history.push("/");
-      alert("Password has been changed successfully, please login.");
-    } else alert("We encountered a problem.");
+    if (response.status === 200) {
+      history.push("/sign-in");
+    }
+    // if (response.data.success === true) {
+    //   history.push("/");
+    //   alert("Password has been changed successfully, please login.");
+    // } else alert("We encountered a problem.");
   } catch (err) {
     console.log(err);
   }

@@ -40,7 +40,6 @@ function ForgotPasswordComponent(props) {
   }
 
   function onChange(value) {
-    console.log("Captcha value:", value);
     setValue(value);
     if (value == null) setExpired(true);
   }
@@ -73,7 +72,8 @@ function ForgotPasswordComponent(props) {
                 </div>
                 <ReCAPTCHA
                   ref={recaptchaRef}
-                  sitekey="6Ldn5DEaAAAAALYRhCaGFStvoKGWXRUxuBJVNPrn"
+                  sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                  secretkey="6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe"
                   onChange={onChange}
                 />
               </form>
