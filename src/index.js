@@ -7,11 +7,10 @@ import { Router, Route, Switch, Redirect } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import { history } from "./history";
-// import SignUp from "./Views/SignUpView";
 import ApproveView from "./Views/ApproveView";
 import Welcome from "./components/Welcome/Welcome";
 import SignUp from "./components/SignUp/SignUp";
-import AboutUs from "./components/AboutUs/AboutUS"
+import AboutUs from "./components/AboutUs/AboutUS";
 
 function PrivateRoute({ children, ...rest }) {
   const auth = { user: false };
@@ -50,9 +49,9 @@ ReactDOM.render(
           <Route path="/sign-up">
             <SignUp />
           </Route>
-          <Route path="/about-us">
-            <AboutUs/>
-          </Route>
+          <PrivateRoute path="/about-us">
+            <AboutUs />
+          </PrivateRoute>
         </Switch>
       </Router>
     </Provider>
