@@ -1,0 +1,15 @@
+.App {
+  display: flex;
+  flex-direction: row;
+}
+.header-and-main {
+  width: 100%;
+}
+.app-header {
+  background-color: rgb(67, 128, 156);
+  height: 10%;
+}
+.header-and-main {
+  display: flex;
+  flex-direction: column;
+}

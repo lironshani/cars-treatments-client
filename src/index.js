@@ -11,11 +11,11 @@ import SignUp from "./Views/SignUpView";
 import SignIn from "./Views/SignInView";
 import ApproveView from "./Views/ApproveView";
 import Welcome from "./components/Welcome/Welcome";
-// import SignUp from "./components/SignUp/SignUp";
+import Sidebar from "./components/Sidebar/Sidebar";
 import AboutUs from "./components/AboutUs/AboutUS";
 
-function PrivateRoute({ children, ...rest }) {
-  const auth = { user: false };
+export default function PrivateRoute({ children, ...rest }) {
+  const auth = { user: true };
 
   return (
     <Route
@@ -41,9 +41,22 @@ ReactDOM.render(
     <Provider store={store}>
       <Router history={history}>
         <Switch>
-          {/* <Route path="/activate/:userid/:token" component={ApproveView} /> */}
           <PrivateRoute exact path="/">
-            <App />
+            <Redirect
+              to={{
+                pathname: "/dashboard",
+              }}
+            />
+          </PrivateRoute>
+          <PrivateRoute path="/dashboard">
+            <App>
+              <p>Dashboard</p>
+            </App>
+          </PrivateRoute>
+          <PrivateRoute path="/about-us">
+            <App>
+              <AboutUs></AboutUs>
+            </App>
           </PrivateRoute>
           <Route path="/welcome">
             <Welcome />
@@ -54,9 +67,6 @@ ReactDOM.render(
           <Route path="/sign-in">
             <SignIn />
           </Route>
-          <PrivateRoute path="/about-us">
-            <AboutUs />
-          </PrivateRoute>
         </Switch>
       </Router>
     </Provider>
