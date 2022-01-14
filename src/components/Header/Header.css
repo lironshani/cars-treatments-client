@@ -1,0 +1,6 @@
+.header {
+  background-color: rgb(255, 251, 245);
+  height: 90px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 0px 18px 5px;
+  z-index: 1;
+}

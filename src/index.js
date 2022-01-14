@@ -12,6 +12,7 @@ import SignIn from "./Views/SignInView";
 import ApproveView from "./Views/ApproveView";
 import Welcome from "./components/Welcome/Welcome";
 import AboutUs from "./components/AboutUs/AboutUS";
+import Dashboard from "./components/Dashboard/Dashboard";
 
 export default function PrivateRoute({ children, ...rest }) {
   const auth = { user: true };
@@ -49,7 +50,7 @@ ReactDOM.render(
           </PrivateRoute>
           <PrivateRoute path="/dashboard">
             <App>
-              <p>Dashboard</p>
+              <Dashboard />
             </App>
           </PrivateRoute>
           <PrivateRoute path="/about-us">

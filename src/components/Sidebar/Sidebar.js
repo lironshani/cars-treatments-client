@@ -11,16 +11,18 @@ import "../Sidebar/Sidebar.css";
 export default function Sidebar() {
   return (
     <div className="container">
+      <img src="/logo.png" className="sidebar-image" />
+      <span className="sidebar-divider"></span>
       <div className="links-list">
         <ul>
-          <li>
+          <li className="sidebar-link">
             <Link className="link" to="/dashboard">
-              dashboard
+              Dashboard
             </Link>
           </li>
-          <li>
+          <li className="sidebar-link">
             <Link className="link" to="/about-us">
-              about-us
+              About Us
             </Link>
           </li>
         </ul>
