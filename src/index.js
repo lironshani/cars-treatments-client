@@ -11,6 +11,8 @@ import SignUp from "./Views/SignUpView";
 import SignIn from "./Views/SignInView";
 import ApproveView from "./Views/ApproveView";
 import Welcome from "./components/Welcome/Welcome";
+import SignUp from "./components/SignUp/SignUp";
+import AboutUs from "./components/AboutUs/AboutUS";
 
 function PrivateRoute({ children, ...rest }) {
   const auth = { user: false };
@@ -52,6 +54,9 @@ ReactDOM.render(
           <Route path="/sign-in">
             <SignIn />
           </Route>
+          <PrivateRoute path="/about-us">
+            <AboutUs />
+          </PrivateRoute>
         </Switch>
       </Router>
     </Provider>
