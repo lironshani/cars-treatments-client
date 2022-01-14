@@ -31,7 +31,6 @@ function SignUpComponent(props) {
       if (value != "[empty]") {
         if (password === password1) {
           dispatch(signup(Email.toLowerCase(), password, Firstname, Lastname));
-          alert("We sent you an email about your sign-up");
         } else {
           alert("The passwords do not match");
           return false;
@@ -89,7 +88,6 @@ function SignUpComponent(props) {
   }
 
   function onChange(value) {
-    console.log("Captcha value:", value);
     setValue(value);
     if (value == null) setExpired(true);
   }
