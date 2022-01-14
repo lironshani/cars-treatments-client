@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 import { history } from "./history";
 import SignUp from "./Views/SignUpView";
+import SignIn from "./Views/SignInView";
 import ApproveView from "./Views/ApproveView";
 import Welcome from "./components/Welcome/Welcome";
 
@@ -47,6 +48,9 @@ ReactDOM.render(
           </Route>
           <Route path="/sign-up">
             <SignUp />
+          </Route>
+          <Route path="/sign-in">
+            <SignIn />
           </Route>
         </Switch>
       </Router>
