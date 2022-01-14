@@ -33,32 +33,37 @@ function signin(email, password) {
 }
 
 const signup = (email, password, firstname, lastname) => async (dispatch) => {
-  dispatch({ type: types.USER_SIGNUP_ATTEMPT, payload: {} });
+  // dispatch({ type: types.USER_SIGNUP_ATTEMPT, payload: {} });
+  // console.log(email, password, firstname, lastname);
   try {
-    const user = await axios.post(
-      "https://cars-treatments.herokuapp.com/signup",
-      {
-        email: email,
-        password: password,
-        firstname: firstname,
-        lastname: lastname,
-      }
-    );
-    if (user.data.success) {
-      dispatch({ type: types.USER_SIGNUP_SUCCESS, payload: user });
-      history.push("/");
-    } else {
-      if (user.data.error === 0)
-        dispatch({ type: types.USER_SIGNUP_FAILED, payload: 0 });
-      else if (user.data.error === 1)
-        dispatch({ type: types.USER_SIGNUP_FAILED, payload: 1 });
-      else if (user.data.error === 3) {
-        dispatch({ type: types.USER_SIGNUP_FAILED, payload: 3 });
-        alert("Bad PromoCode!");
-      }
+    const response = await axios.post("http://localhost:5000/users/register", {
+      email: email,
+      password: password,
+      first_name: firstname,
+      last_name: lastname,
+    });
+    if (response.status === 200) {
+      history.push("/sign-in");
     }
+    // if (user.data.success) {
+    //   dispatch({ type: types.USER_SIGNUP_SUCCESS, payload: user });
+    //   history.push("/");
+    // } else {
+    //   if (user.data.error === 0)
+    //     dispatch({ type: types.USER_SIGNUP_FAILED, payload: 0 });
+    //   else if (user.data.error === 1)
+    //     dispatch({ type: types.USER_SIGNUP_FAILED, payload: 1 });
+    //   else if (user.data.error === 3) {
+    //     dispatch({ type: types.USER_SIGNUP_FAILED, payload: 3 });
+    //     alert("Bad PromoCode!");
+    //   }
+    // }
   } catch (err) {
-    dispatch({ type: types.USER_SIGNUP_FAILED, payload: err });
+    if (err.response.data.error === "email-exists")
+      alert("Email already exists!");
+    else console.log(err);
+
+    // dispatch({ type: types.USER_SIGNUP_FAILED, payload: err });
   }
 };
 
@@ -77,71 +82,6 @@ const forgotPass = (email) => async (dispatch) => {
     } else {
       alert("This email is not recognized.");
     }
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-const updatePass = (email, oldpass, newpass) => async (dispatch) => {
-  try {
-    const response = await axios.post(
-      "https://techstar12.herokuapp.com/updatePass",
-      {
-        email: email,
-        oldpass: oldpass,
-        newpass: newpass,
-      }
-    );
-    if (response.data.success === true) {
-      dispatch(signout());
-      history.push("/");
-      alert("Password has been changed successfully, please re-login.");
-    } else {
-      alert(
-        "The old password you have entered is wrong. Password hasn't changed"
-      );
-    }
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-const updateEmail = (oldemail, newemail) => async (dispatch) => {
-  try {
-    const response = await axios.post(
-      "https://techstar12.herokuapp.com/updateEmail",
-      {
-        email: oldemail,
-        newemail: newemail,
-      }
-    );
-    if (response.data.success === true) {
-      dispatch(signout());
-      history.push("/");
-      alert(
-        "An email has been sent to the original email you had. Please visit your Email box and follow the instructions to approve the change."
-      );
-    } else {
-      alert("We encountered a problem.");
-    }
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-const approveUser = (userid, token) => async (dispatch) => {
-  try {
-    const response = await axios.post(
-      "https://techstar12.herokuapp.com/approve_user",
-      {
-        userid: userid,
-        token: token,
-      }
-    );
-    if (response.data.success === true) {
-      history.push("/");
-      alert("Your account has been activated successfully. Please login.");
-    } else alert("We encountered a problem.");
   } catch (err) {
     console.log(err);
   }
@@ -166,46 +106,9 @@ const updatePassForgot = (userid, token, newpass) => async (dispatch) => {
   }
 };
 
-const updateDet =
-  (email, first_name, last_name, phonenumber, country, city) =>
-  async (dispatch) => {
-    try {
-      const response = await axios.post(
-        "https://techstar12.herokuapp.com/updateDet",
-        {
-          email: email,
-          first_name: first_name,
-          last_name: last_name,
-          phonenumber: phonenumber,
-          country: country,
-          city: city,
-        }
-      );
-      if (response.data.success == true) {
-        alert(
-          "Detailes updated successfully!\n You will be able to see all the updates in the next login!"
-        );
-        //dispatch(signout());
-        //history.push('/');
-      } else console.log(response.data.status);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
 const signout = () => (dispatch) => {
   cookie.remove("userInstance");
   dispatch({ type: types.USER_SIGNOUT_SUCCESS });
 };
 
-export {
-  signin,
-  signup,
-  signout,
-  forgotPass,
-  updatePass,
-  updateDet,
-  updatePassForgot,
-  approveUser,
-  updateEmail,
-};
+export { signin, signup, signout, forgotPass, updatePassForgot };

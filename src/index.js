@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
@@ -9,19 +10,20 @@ import store from "./redux/store";
 import { history } from "./history";
 import SignUp from "./Views/SignUpView";
 import SignIn from "./Views/SignInView";
-import ApproveView from "./Views/ApproveView";
 import Welcome from "./components/Welcome/Welcome";
 import AboutUs from "./components/AboutUs/AboutUS";
 import Dashboard from "./components/Dashboard/Dashboard";
+import ResetPassword from "./Views/ResetPasswordView";
+import ForgotPassword from "./Views/ForgotPasswordView";
 
 export default function PrivateRoute({ children, ...rest }) {
-  const auth = { user: true };
+  const user = useSelector((state) => state.user);
 
   return (
     <Route
       {...rest}
       render={({ location }) =>
-        auth.user ? (
+        user ? (
           children
         ) : (
           <Redirect
@@ -66,6 +68,12 @@ ReactDOM.render(
           </Route>
           <Route path="/sign-in">
             <SignIn />
+          </Route>
+          <Route path="/reset-password/:userid/:token">
+            <ResetPassword />
+          </Route>
+          <Route path="/forgot-password">
+            <ForgotPassword />
           </Route>
         </Switch>
       </Router>
