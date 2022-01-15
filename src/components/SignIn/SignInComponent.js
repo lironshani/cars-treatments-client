@@ -109,8 +109,19 @@ function SignInComponent(props) {
                   Please enter your password.
                 </div>
               </div>
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="flexCheckDefault"
+                />
+                <label className="form-check-label" htmlFor="flexCheckDefault">
+                  Remember me
+                </label>
+              </div>
               <div className="row">
-                <a id="forgot" href="/ForgotPass">
+                <a id="forgot" href="/forgot-password">
                   Forgot password?
                 </a>
               </div>

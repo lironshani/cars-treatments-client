@@ -4,8 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import "../ResetPassword/ResetPassComp.css";
 import { updatePassForgot } from "../../redux/actions/authActions";
 import ReCAPTCHA from "react-google-recaptcha";
+import { useParams } from "react-router-dom";
 
-function UpdatePasswordComponent(props) {
+function UpdatePasswordComponent() {
+  const { token } = useParams();
   const [password, setPassword] = useState("");
   const [password1, setPassword1] = useState("");
   const dispatch = useDispatch();
@@ -17,9 +19,9 @@ function UpdatePasswordComponent(props) {
   function onClickUpdate() {
     if (value != "[empty]") {
       if (checkPwd(password)) {
-        if (password === password1)
-          dispatch(updatePassForgot(props.userid, props.token, password));
-        else alert("The passwords do not match");
+        if (password === password1) {
+          dispatch(updatePassForgot(token, password));
+        } else alert("The passwords do not match");
       }
     } else {
       alert("You have to verify the Recaptcha!");
@@ -79,7 +81,8 @@ function UpdatePasswordComponent(props) {
               </div>
               <ReCAPTCHA
                 ref={recaptchaRef}
-                sitekey="6Ldn5DEaAAAAALYRhCaGFStvoKGWXRUxuBJVNPrn"
+                sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                secretkey="6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe"
                 onChange={onChange}
                 id="my_captcha_form"
               />

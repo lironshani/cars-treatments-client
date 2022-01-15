@@ -68,7 +68,7 @@ ReactDOM.render(
           <Route path="/sign-in">
             <SignIn />
           </Route>
-          <Route path="/reset-password/:userid/:token">
+          <Route path="/reset-password/:token">
             <ResetPassword />
           </Route>
           <Route path="/forgot-password">
