@@ -8,10 +8,7 @@ class ResetPassword extends Component {
     return (
       <div>
         <NavBar />
-        <UpdatePasswordComponent
-          userid={this.props.match.params.userid}
-          token={this.props.match.params.token}
-        />
+        <UpdatePasswordComponent token={this.token} />
       </div>
     );
   }
