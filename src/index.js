@@ -8,9 +8,9 @@ import { Router, Route, Switch, Redirect } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import { history } from "./history";
-// import SignIn from "./Views/SignInView";
 import Welcome from "./components/Welcome/Welcome";
 import AboutUs from "./components/AboutUs/AboutUS";
+import Dashboard from "./components/Dashboard/Dashboard";
 import SignUp from "./components/SignUp/SignUp";
 import SignIn from "./components/SignIn/SignIn";
 import ResetPassword from "./components/ResetPassword/ResetPassComp";
@@ -53,7 +53,7 @@ ReactDOM.render(
           </PrivateRoute>
           <PrivateRoute path="/dashboard">
             <App>
-              <p>Dashboard</p>
+              <Dashboard />
             </App>
           </PrivateRoute>
           <PrivateRoute path="/about-us">

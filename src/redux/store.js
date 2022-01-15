@@ -14,8 +14,8 @@ import { authReducer } from "./reducers/authReducer";
 // }
 
 const initialState = {
-  user: undefined,
-  // user: { name: "liron" },
+  // user: undefined,
+  user: { name: "liron" },
   token: undefined,
 };
 

@@ -67,7 +67,7 @@ function SignUpComponent(props) {
       alert("No num");
       return false;
     } else if (str.search(/[a-zA-Z]/) === -1) {
-      alert("no chars");
+      alert("Password must contain chars");
       return false;
     }
     return true;
