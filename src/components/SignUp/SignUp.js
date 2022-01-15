@@ -93,7 +93,7 @@ function SignUpComponent(props) {
   }
 
   return (
-    <div>
+    <div className="signup-container">
       <div id="SignUpcontainer">
         <div className="row justify-content-center">
           <div id="SignUp">
@@ -171,7 +171,7 @@ function SignUpComponent(props) {
               <div className="row">
                 <div className="need-acc-txt">
                   {" "}
-                  Have an account? <a href="/SignIn">Sign-In</a>
+                  Have an account? <a href="/sign-in">Sign-In</a>
                 </div>
               </div>
               <ReCAPTCHA

@@ -42,7 +42,7 @@ function UpdatePasswordComponent() {
   }
 
   return (
-    <div>
+    <div className="reset-password-container">
       <div id="UpdatePasswordcontainer">
         <div className="row justify-content-center">
           <div id="UpdatePassword">

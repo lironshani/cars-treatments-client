@@ -68,7 +68,7 @@ function SignInComponent(props) {
   }
 
   return (
-    <div>
+    <div className="signin-container">
       <div id="SignIncontainer">
         <div className="row justify-content-center">
           <div id="SignIn">
@@ -132,7 +132,7 @@ function SignInComponent(props) {
               </div>
               <div className="row">
                 <div className="need-acc-txt">
-                  Need an account? <a href="/SignUp">Sign-Up</a>{" "}
+                  Need an account? <a href="/sign-up">Sign-Up</a>{" "}
                 </div>
               </div>
               <ReCAPTCHA
