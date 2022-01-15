@@ -45,7 +45,7 @@ function ForgotPasswordComponent(props) {
   }
 
   return (
-    <div>
+    <div className="forgot-pasword-container">
       <div id="ForgotContainer">
         <div className="row justify-content-center">
           <div id="Forgot">
