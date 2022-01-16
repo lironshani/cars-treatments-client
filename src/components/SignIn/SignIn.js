@@ -110,17 +110,22 @@ function SignInComponent(props) {
                   Please enter your password.
                 </div>
               </div>
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  value={remember}
-                  onChange={(e) => setRemember(e.target.checked)}
-                  id="flexCheckDefault"
-                />
-                <label className="form-check-label" htmlFor="flexCheckDefault">
-                  Remember me
-                </label>
+              <div className="remember">
+                <div className="form-check">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    value={remember}
+                    onChange={(e) => setRemember(e.target.checked)}
+                    id="flexCheckDefault"
+                  />
+                  <label
+                    className="form-check-label"
+                    htmlFor="flexCheckDefault"
+                  >
+                    Remember me
+                  </label>
+                </div>
               </div>
               <div className="row">
                 <a id="forgot" href="/forgot-password">
@@ -134,16 +139,18 @@ function SignInComponent(props) {
               </div>
               <div className="row">
                 <div className="need-acc-txt">
-                  Need an account? <a href="/sign-up">Sign-Up</a>{" "}
+                  Don't have an account? <a href="/sign-up">Sign-Up</a>{" "}
                 </div>
               </div>
               <ReCAPTCHA
                 ref={recaptchaRef}
-                sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
-                secretkey="6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe"
+                sitekey="6Ldn5DEaAAAAALYRhCaGFStvoKGWXRUxuBJVNPrn"
                 onChange={onChange}
               />
             </form>
+            <div className="back">
+              <a href="/welcome">Back to main page</a>
+            </div>
           </div>
         </div>
       </div>
