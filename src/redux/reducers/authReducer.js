@@ -7,6 +7,14 @@ function authReducer(state = {}, action) {
         logging: true,
       };
     }
+    case types.SET_TOKEN_USER: {
+      const { user, token } = action;
+      return {
+        ...state,
+        user,
+        token,
+      };
+    }
     case types.USER_SIGNIN_SUCCESS: {
       return {
         logging: false,
