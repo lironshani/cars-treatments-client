@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from "moment";
@@ -21,38 +22,41 @@ import AddTreatmentModal from "./AddTreatmentModal";
 import "./Dashboard.css";
 
 function Dashboard() {
+  const token = useSelector((state) => state.token);
   const [loading, setLoading] = useState(true);
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
   const [treatments, setTreatments] = useState([]);
   const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      getAllTreatments()
-        .then((res) => res.json())
-        .then((data) => {
-          setTimeout(() => setLoading(false), 500);
-          setTreatments(
-            data
-              .map((item) => ({
-                ...item,
-                key: item.treatment_number,
-                date: moment(item.date),
-              }))
-              .filter(({ key, date, ...treatment }) => {
-                return Object.values(treatment).some((value) => {
-                  return `${value}`.match(searchInput);
-                });
-              })
-          );
-        })
-        .catch((err) => console.log(err.message));
-    }, 1000);
+    if (token) {
+      const intervalId = setInterval(() => {
+        getAllTreatments()
+          .then((res) => res.json())
+          .then((data) => {
+            setTimeout(() => setLoading(false), 500);
+            setTreatments(
+              data
+                .map((item) => ({
+                  ...item,
+                  key: item.treatment_number,
+                  date: moment(item.date),
+                }))
+                .filter(({ key, date, ...treatment }) => {
+                  return Object.values(treatment).some((value) => {
+                    return `${value}`.match(searchInput);
+                  });
+                })
+            );
+          })
+          .catch((err) => console.log(err.message));
+      }, 1000);
 
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, [searchInput]);
+      return () => {
+        clearInterval(intervalId);
+      };
+    }
+  }, [searchInput, token]);
 
   const handleChange = (e) => setSearchInput(e.target.value);
 

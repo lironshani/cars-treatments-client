@@ -18,7 +18,7 @@ const setCookie = (name, value, days = 7, path = "/") => {
 function signin(email, password, remember) {
   return (dispatch) => {
     axios
-      .post("http://localhost:5000/users/login", {
+      .post(`${process.env.REACT_APP_SERVER_URL}/users/login`, {
         email,
         password,
       })
@@ -46,7 +46,7 @@ const signup = (email, password, firstname, lastname) => async (dispatch) => {
   // dispatch({ type: types.USER_SIGNUP_ATTEMPT, payload: {} });
   // console.log(email, password, firstname, lastname);
   try {
-    const response = await axios.post("http://localhost:5000/users/register", {
+    const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/users/register`, {
       email: email,
       password: password,
       first_name: firstname,
@@ -79,7 +79,7 @@ const signup = (email, password, firstname, lastname) => async (dispatch) => {
 
 const forgotPass = (email) => async (dispatch) => {
   try {
-    const response = await axios.put("http://localhost:5000/users/forgot", {
+    const response = await axios.put(`${process.env.REACT_APP_SERVER_URL}/users/forgot`, {
       email: email,
     });
     if (response.status === 200) {
@@ -97,7 +97,7 @@ const forgotPass = (email) => async (dispatch) => {
 const updatePassForgot = (token, newpass) => async (dispatch) => {
   try {
     const response = await axios.post(
-      "http://localhost:5000/users/reset",
+      `${process.env.REACT_APP_SERVER_URL}/users/reset`,
       {
         new_password: newpass,
       },

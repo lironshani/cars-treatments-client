@@ -1,7 +1,7 @@
 .forgot-pasword-container {
   background-image: url(../../images/garage.jpg);
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
