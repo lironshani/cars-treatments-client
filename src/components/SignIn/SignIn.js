@@ -9,6 +9,7 @@ import Alert from "react-bootstrap/Alert";
 function SignInComponent(props) {
   const [Email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [remember, setRemember] = useState(false);
   const [value, setValue] = useState("[empty]");
   const [expired, setExpired] = useState("false");
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ function SignInComponent(props) {
       checkPwd(password) &&
       value != "[empty]"
     ) {
-      dispatch(signin(Email.toLowerCase(), password));
+      dispatch(signin(Email.toLowerCase(), password, remember));
     } else {
       alert("You have to verify the Recaptcha !");
       return false;
@@ -113,7 +114,8 @@ function SignInComponent(props) {
                 <input
                   className="form-check-input"
                   type="checkbox"
-                  value=""
+                  value={remember}
+                  onChange={(e) => setRemember(e.target.checked)}
                   id="flexCheckDefault"
                 />
                 <label className="form-check-label" htmlFor="flexCheckDefault">
