@@ -98,6 +98,7 @@ const render = () => {
 };
 
 if (token) {
+  console.log('token: ', token);
   axios
     .get(`${process.env.REACT_APP_SERVER_URL}/users/get-user`, {
       headers: {
@@ -119,6 +120,8 @@ if (token) {
       console.log("error: ", error);
     });
 } else {
+  console.log('token: ', token);
+
   render();
 }
 // If you want to start measuring performance in your app, pass a function
