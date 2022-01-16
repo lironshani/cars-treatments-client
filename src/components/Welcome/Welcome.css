@@ -45,6 +45,7 @@
   background-color: #ffc671;
   border-color: #5369f8;
   color: #fff;
+  border-radius: 25px;
 }
 .container-div {
   display: flex;

@@ -174,13 +174,16 @@ function SignUpComponent(props) {
                   Have an account? <a href="/sign-in">Sign-In</a>
                 </div>
               </div>
+
               <ReCAPTCHA
                 ref={recaptchaRef}
-                sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
-                secretkey="6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe"
+                sitekey="6Ldn5DEaAAAAALYRhCaGFStvoKGWXRUxuBJVNPrn"
                 onChange={onChange}
                 id="my_captcha_form"
               />
+              <div className="back">
+                <a href="/welcome">Back to main page</a>
+              </div>
             </form>
           </div>
         </div>
