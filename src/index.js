@@ -99,7 +99,7 @@ const render = () => {
 
 if (token) {
   axios
-    .get("http://localhost:5000/users/get-user", {
+    .get(`${process.env.REACT_APP_SERVER_URL}/users/get-user`, {
       headers: {
         authorization: `Bearer ${token}`,
       },
