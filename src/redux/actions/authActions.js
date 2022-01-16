@@ -3,30 +3,40 @@ import cookie from "js-cookie";
 import * as types from "../types";
 import { history } from "../../history";
 
-function signin(email, password) {
+const setCookie = (name, value, days = 7, path = "/") => {
+  const expires = new Date(Date.now() + days * 864e5).toUTCString();
+  document.cookie =
+    name +
+    "=" +
+    encodeURIComponent(value) +
+    "; expires=" +
+    expires +
+    "; path=" +
+    path;
+};
+
+function signin(email, password, remember) {
   return (dispatch) => {
-    dispatch({ type: types.USER_SIGNIN_ATTEMPT, payload: {} });
     axios
-      .post("https://techstar12.herokuapp.com/signin", {
-        email: email,
-        password: password,
+      .post("http://localhost:5000/users/login", {
+        email,
+        password,
       })
       .then(function (response) {
-        if (response.data.success === true) {
-          dispatch({ type: types.USER_SIGNIN_SUCCESS, payload: response });
-          cookie.set("userInstance", JSON.stringify(response));
+        if (response.status === 200) {
+          dispatch({
+            type: types.SET_TOKEN_USER,
+            ...response.data,
+          });
+          if (remember) {
+            setCookie("jwt", response.data.token, 365);
+          }
           history.push("/");
         } else {
-          dispatch({ type: types.USER_SIGNIN_FAILED, payload: 0 });
-          if (response.data.error === 1) {
-            dispatch({ type: types.USER_SIGNIN_FAILED, payload: 1 });
-            alert(
-              "Your account is still disabled. You need to activate it using the URL we sent to your Email."
-            );
-          }
         }
       })
       .catch(function (error) {
+        console.log("error: ", error);
         dispatch({ type: types.USER_SIGNIN_FAILED, payload: error });
       });
   };

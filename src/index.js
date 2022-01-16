@@ -15,7 +15,16 @@ import SignUp from "./components/SignUp/SignUp";
 import SignIn from "./components/SignIn/SignIn";
 import ResetPassword from "./components/ResetPassword/ResetPassComp";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassComp";
+import axios from "axios";
 
+const getCookie = (name) => {
+  return document.cookie.split("; ").reduce((r, v) => {
+    const parts = v.split("=");
+    return parts[0] === name ? decodeURIComponent(parts[1]) : r;
+  }, "");
+};
+
+const token = getCookie("jwt");
 
 export default function PrivateRoute({ children, ...rest }) {
   const user = useSelector((state) => state.user);
@@ -39,51 +48,79 @@ export default function PrivateRoute({ children, ...rest }) {
   );
 }
 
-ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <Router history={history}>
-        <Switch>
-          <PrivateRoute exact path="/">
-            <Redirect
-              to={{
-                pathname: "/dashboard",
-              }}
-            />
-          </PrivateRoute>
-          <PrivateRoute path="/dashboard">
-            <App>
-              <Dashboard />
-            </App>
-          </PrivateRoute>
-          <PrivateRoute path="/about-us">
-            <App>
-              <AboutUs></AboutUs>
-            </App>
-          </PrivateRoute>
-          <Route path="/welcome">
-            <Welcome />
-          </Route>
-          <Route path="/sign-up">
-            <SignUp />
-          </Route>
-          <Route path="/sign-in">
-            <SignIn />
-          </Route>
-          <Route path="/reset-password/:token">
-            <ResetPassword />
-          </Route>
-          <Route path="/forgot-password">
-            <ForgotPassword />
-          </Route>
-        </Switch>
-      </Router>
-    </Provider>
-    {/* <App /> */}
-  </React.StrictMode>,
-  document.getElementById("root")
-);
+const render = () => {
+  ReactDOM.render(
+    <React.StrictMode>
+      <Provider store={store}>
+        <Router history={history}>
+          <Switch>
+            <PrivateRoute exact path="/">
+              <Redirect
+                to={{
+                  pathname: "/dashboard",
+                }}
+              />
+            </PrivateRoute>
+            <PrivateRoute path="/dashboard">
+              <App>
+                <Dashboard />
+              </App>
+            </PrivateRoute>
+            <PrivateRoute path="/about-us">
+              <App>
+                <AboutUs></AboutUs>
+              </App>
+            </PrivateRoute>
+            <Route path="/welcome">
+              <Welcome />
+            </Route>
+            <Route path="/sign-up">
+              <SignUp />
+            </Route>
+            <Route path="/sign-in">
+              <SignIn />
+            </Route>
+            <Route path="/reset-password/:token">
+              <ResetPassword />
+            </Route>
+            <Route path="/forgot-password">
+              <ForgotPassword />
+            </Route>
+            <Route path="*">
+              <p>404 Not found</p>
+            </Route>
+          </Switch>
+        </Router>
+      </Provider>
+    </React.StrictMode>,
+    document.getElementById("root")
+  );
+};
 
+if (token) {
+  axios
+    .get("http://localhost:5000/users/get-user", {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    })
+    .then(function (response) {
+      if (response.status === 200) {
+        store.dispatch({
+          type: "SET_TOKEN_USER",
+          token,
+          user: response.data,
+        });
+      } else {
+      }
+      render();
+    })
+    .catch(function (error) {
+      console.log("error: ", error);
+    });
+} else {
+  render();
+}
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
