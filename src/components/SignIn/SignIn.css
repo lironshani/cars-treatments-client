@@ -36,11 +36,11 @@
 #title {
   font-family: Calibri;
   font-size: 25px;
-  color: #ebad70 !important;
+  color: #ebad70;
 }
 
 button {
-  background-color: #ebad70 !important;
+  background-color: #ebad70;
   color: white;
   font-size: 25px;
   font-weight: 400;
@@ -64,7 +64,7 @@ button {
   padding-top: 20%;
 }
 
-.remember {
+/* .remember {
   text-align: start !important;
 }
 #forgot,
@@ -74,4 +74,4 @@ button {
 }
 .back {
   text-align: start;
-}
+} */
