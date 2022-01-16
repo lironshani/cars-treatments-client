@@ -36,11 +36,11 @@
 #title {
   font-family: Calibri;
   font-size: 25px;
-  color: #0f0761;
+  color: #ebad70 !important;
 }
 
 button {
-  background-color: #0f0761;
+  background-color: #ebad70 !important;
   color: white;
   font-size: 25px;
   font-weight: 400;
@@ -62,4 +62,16 @@ button {
 
 .SignInForm {
   padding-top: 20%;
+}
+
+.remember {
+  text-align: start !important;
+}
+#forgot,
+.need-acc-txt,
+.back {
+  padding-left: 20px;
+}
+.back {
+  text-align: start;
 }
