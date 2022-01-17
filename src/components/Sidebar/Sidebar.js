@@ -7,7 +7,12 @@ import {
   useRouteMatch,
 } from "react-router-dom";
 import "../Sidebar/Sidebar.css";
+import { history } from "../../history";
 
+const logout = () => {
+  document.cookie = "jwt" + "=; Max-Age=-99999999;";
+  history.push("/welcome");
+};
 export default function Sidebar() {
   return (
     <div className="container">
@@ -26,6 +31,9 @@ export default function Sidebar() {
             </Link>
           </li>
         </ul>
+        <div className="logout">
+          <div onClick={logout}>Logout</div>
+        </div>
       </div>
     </div>
   );

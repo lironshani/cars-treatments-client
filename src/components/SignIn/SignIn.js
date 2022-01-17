@@ -63,7 +63,6 @@ function SignInComponent(props) {
   }
 
   function onChange(value) {
-    console.log("Captcha value:", value);
     setValue(value);
     if (value == null) setExpired(true);
   }
@@ -144,7 +143,7 @@ function SignInComponent(props) {
               </div>
               <ReCAPTCHA
                 ref={recaptchaRef}
-                sitekey="6LehBBoeAAAAADTacWITp-3whe262HABRPq6nTvw"
+                sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
                 onChange={onChange}
               />
             </form>

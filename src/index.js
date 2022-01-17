@@ -87,8 +87,8 @@ const render = () => {
             <Route path="/forgot-password">
               <ForgotPassword />
             </Route>
-            <Route component={NotFound}>
-            <p>checking</p>
+            <Route>
+              <NotFound />
             </Route>
           </Switch>
         </Router>
