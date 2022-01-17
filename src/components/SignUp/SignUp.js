@@ -177,7 +177,7 @@ function SignUpComponent(props) {
 
               <ReCAPTCHA
                 ref={recaptchaRef}
-                sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                sitekey="6LeX_RoeAAAAAFgrTq3vnDzgr_aeuyLoeTTYHbn0"
                 onChange={onChange}
                 id="my_captcha_form"
               />
