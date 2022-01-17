@@ -75,6 +75,9 @@ function ForgotPasswordComponent(props) {
                   sitekey="6LehBBoeAAAAADTacWITp-3whe262HABRPq6nTvw"
                   onChange={onChange}
                 />
+                <div className="back">
+                  <a href="/sign-in">Back to sign in</a>
+                </div>
               </form>
             </div>
           </div>
