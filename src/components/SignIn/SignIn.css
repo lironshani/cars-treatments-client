@@ -64,8 +64,8 @@ button {
   padding-top: 20%;
 }
 
-/* .remember {
-  text-align: start !important;
+.remember {
+  text-align: start;
 }
 #forgot,
 .need-acc-txt,
@@ -74,4 +74,4 @@ button {
 }
 .back {
   text-align: start;
-} */
+}
