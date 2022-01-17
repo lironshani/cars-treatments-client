@@ -16,7 +16,7 @@ import SignIn from "./components/SignIn/SignIn";
 import ResetPassword from "./components/ResetPassword/ResetPassComp";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassComp";
 import axios from "axios";
-import WrongPath from "./components/WrongPath/NotFound";
+import NotFound from "./components/WrongPath/NotFound";
 
 const getCookie = (name) => {
   return document.cookie.split("; ").reduce((r, v) => {
