@@ -144,7 +144,7 @@ function SignInComponent(props) {
               </div>
               <ReCAPTCHA
                 ref={recaptchaRef}
-                sitekey="6Ldn5DEaAAAAALYRhCaGFStvoKGWXRUxuBJVNPrn"
+                sitekey="6LehBBoeAAAAADTacWITp-3whe262HABRPq6nTvw"
                 onChange={onChange}
               />
             </form>
