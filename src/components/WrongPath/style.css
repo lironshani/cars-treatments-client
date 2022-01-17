@@ -23,7 +23,7 @@ body, html{
     margin: 0;
     font-weight: 900;
     letter-spacing: 15px;
-    background: url(.//img/gradient.jpg);
+    background: url(../../images/gradient.jpg);
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
 }
