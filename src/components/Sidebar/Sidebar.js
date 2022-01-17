@@ -15,7 +15,7 @@ const logout = () => {
 };
 export default function Sidebar() {
   return (
-    <div className="container">
+    <div className="sidebar-container">
       <img src="/logo.png" className="sidebar-image" />
       <span className="sidebar-divider"></span>
       <div className="links-list">
