@@ -81,7 +81,7 @@ function UpdatePasswordComponent() {
               </div>
               <ReCAPTCHA
                 ref={recaptchaRef}
-                sitekey="6Ldn5DEaAAAAALYRhCaGFStvoKGWXRUxuBJVNPrn"
+                sitekey="6LehBBoeAAAAADTacWITp-3whe262HABRPq6nTvw"
                 onChange={onChange}
                 id="my_captcha_form"
               />
