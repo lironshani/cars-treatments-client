@@ -47,6 +47,7 @@ html {
   border-radius: 1pc 3pc 0pc 7pc;
   box-shadow: 1pc 1pc rgb(206, 206, 197);
   cursor: pointer;
+  width: 30%;
 }
 
 .btn:hover {
