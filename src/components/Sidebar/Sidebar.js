@@ -15,7 +15,8 @@ const logout = () => {
 };
 export default function Sidebar() {
   return (
-    <div className="sidebar-container">
+    <div className="sidebar-container ">
+     <meta name="viewport" content="width=device-width,initial-scale=0.5" />
       <img src="/logo.png" className="sidebar-image" />
       <span className="sidebar-divider"></span>
       <div className="links-list">
