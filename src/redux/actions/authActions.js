@@ -43,45 +43,34 @@ function signin(email, password, remember) {
 }
 
 const signup = (email, password, firstname, lastname) => async (dispatch) => {
-  // dispatch({ type: types.USER_SIGNUP_ATTEMPT, payload: {} });
-  // console.log(email, password, firstname, lastname);
   try {
-    const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/users/register`, {
-      email: email,
-      password: password,
-      first_name: firstname,
-      last_name: lastname,
-    });
+    const response = await axios.post(
+      `${process.env.REACT_APP_SERVER_URL}/users/register`,
+      {
+        email: email,
+        password: password,
+        first_name: firstname,
+        last_name: lastname,
+      }
+    );
     if (response.status === 200) {
       history.push("/sign-in");
     }
-    // if (user.data.success) {
-    //   dispatch({ type: types.USER_SIGNUP_SUCCESS, payload: user });
-    //   history.push("/");
-    // } else {
-    //   if (user.data.error === 0)
-    //     dispatch({ type: types.USER_SIGNUP_FAILED, payload: 0 });
-    //   else if (user.data.error === 1)
-    //     dispatch({ type: types.USER_SIGNUP_FAILED, payload: 1 });
-    //   else if (user.data.error === 3) {
-    //     dispatch({ type: types.USER_SIGNUP_FAILED, payload: 3 });
-    //     alert("Bad PromoCode!");
-    //   }
-    // }
   } catch (err) {
     if (err.response.data.error === "email-exists")
       alert("Email already exists!");
     else console.log(err);
-
-    // dispatch({ type: types.USER_SIGNUP_FAILED, payload: err });
   }
 };
 
 const forgotPass = (email) => async (dispatch) => {
   try {
-    const response = await axios.put(`${process.env.REACT_APP_SERVER_URL}/users/forgot`, {
-      email: email,
-    });
+    const response = await axios.put(
+      `${process.env.REACT_APP_SERVER_URL}/users/forgot`,
+      {
+        email: email,
+      }
+    );
     if (response.status === 200) {
       alert(
         "A recovery email has been sent to the email you specified. Please visit your Email box and follow the instructions."
